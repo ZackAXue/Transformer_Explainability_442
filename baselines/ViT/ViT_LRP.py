@@ -43,7 +43,10 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
     all_layer_matrices = [all_layer_matrices[i] + eye for i in range(len(all_layer_matrices))]
     # all_layer_matrices = [all_layer_matrices[i] / all_layer_matrices[i].sum(dim=-1, keepdim=True)
     #                       for i in range(len(all_layer_matrices))]
+    print(start_layer)
+    print("===========================================")
     print(all_layer_matrices)
+    print("===========================================")
     joint_attention = all_layer_matrices[start_layer]
     for i in range(start_layer+1, len(all_layer_matrices)):
         joint_attention = all_layer_matrices[i].bmm(joint_attention)
