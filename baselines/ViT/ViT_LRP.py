@@ -51,6 +51,7 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
         
     print(start_layer)
     print("===========================================")
+    print(joint_attention.shape)
     print(joint_attention)
     print("===========================================")
     return joint_attention
