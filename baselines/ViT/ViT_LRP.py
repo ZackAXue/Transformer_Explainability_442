@@ -324,7 +324,23 @@ class VisionTransformer(nn.Module):
         x = x.squeeze(1)
         x = self.head(x)
         return x
+    ######################################################
+    # TODO
+    def get_relprop(self):
+        print('start get')
+        attn_cams_temp = []
+        attns_temp = []
+        block_num = 0
 
+        for blk in self.blocks:
+            block_num += 1
+            attn = blk.attn.get_attn()
+            attns_temp.append(attn)
+            attn_heads = blk.attn.get_attn_cam()
+            attn_cams_temp.append(attn_heads)
+        return attns_temp, attn_cams_temp
+
+    ######################################################
     def relprop(self, cam=None,method="transformer_attribution", is_ablation=False, start_layer=0, **kwargs):
         # print(kwargs)
         # print("conservation 1", cam.sum())
