@@ -345,6 +345,8 @@ class VisionTransformer(nn.Module):
         # print(kwargs)
         # print("conservation 1", cam.sum())
         print("=================calling relprop============================")
+        print(method)
+        print("=================calling relprop============================")
         cam = self.head.relprop(cam, **kwargs)
         cam = cam.unsqueeze(1)
         cam = self.pool.relprop(cam, **kwargs)
