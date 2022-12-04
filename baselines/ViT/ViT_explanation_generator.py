@@ -23,7 +23,7 @@ class LRP:
         self.model.eval()
 
     def generate_LRP(self, input, index=None, method="transformer_attribution", is_ablation=False, start_layer=0):
-        print("calling LRP")
+
         output = self.model(input)
         kwargs = {"alpha": 1}
         if index == None:
