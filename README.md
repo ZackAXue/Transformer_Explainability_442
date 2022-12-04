@@ -15,7 +15,7 @@ Among the features:
 
 ---
 ## ViT explainability notebook:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hila-chefer/Transformer-Explainability/blob/main/Transformer_explainability.ipynb)
+[![Open In Colab](https://colab.research.google.com/drive/14OVTbyWncHDzBeP13aqqFa3acWdiXPgy?usp=sharing)
 
 ## BERT explainability notebook:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hila-chefer/Transformer-Explainability/blob/main/BERT_explainability.ipynb)
