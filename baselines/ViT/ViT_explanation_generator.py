@@ -14,6 +14,9 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
                           for i in range(len(all_layer_matrices))]
     joint_attention = matrices_aug[start_layer]
     for i in range(start_layer+1, len(matrices_aug)):
+        print("===================current_layer==========================")
+        print(start_layer)
+        print("===================current_layer==========================")
         joint_attention = matrices_aug[i].bmm(joint_attention)
     return joint_attention
 
