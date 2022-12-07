@@ -407,8 +407,8 @@ class VisionTransformer(nn.Module):
                 cam = grad * cam
                 cam = cam.clamp(min=0).mean(dim=0)
                 cams.append(cam.unsqueeze(0))
-            # rollout = compute_rollout_attention(cams, start_layer=start_layer)
-            rollout = compute_layer_rollout_attention(cams, start_layer=start_layer)
+            rollout = compute_rollout_attention(cams, start_layer=start_layer)
+            # rollout = compute_layer_rollout_attention(cams, start_layer=start_layer)
       
             cam = rollout[:, 0, 1:]
             return cam
