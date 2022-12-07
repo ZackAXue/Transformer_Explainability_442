@@ -45,13 +45,15 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
     #                       for i in range(len(all_layer_matrices))]
     
     joint_attention = all_layer_matrices[start_layer]
-    
+    count = 0
     for i in range(start_layer+1, len(all_layer_matrices)):
+        count += 1
         joint_attention = all_layer_matrices[i].bmm(joint_attention)
         
     print("start layerr: ", start_layer)
+    print("product times:",count)
     print("===========================================")
-    print("joint_attention from compute_rollout_attention in Vit_LRP.py")
+    print("joint_attention from compute_rollout_attention in Vit_LRP.py: ")
     print(joint_attention.shape)
     print(joint_attention)
     print("===========================================")
