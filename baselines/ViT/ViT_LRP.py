@@ -395,7 +395,34 @@ class VisionTransformer(nn.Module):
             cam = compute_rollout_attention(attn_cams, start_layer=start_layer)
             cam = cam[:, 0, 1:]
             return cam
-        
+            ######################################################
+        elif method == "print_layer_cam":
+            # cam rollout
+            attn_cams = []
+            for blk in self.blocks:
+                attn_heads = blk.attn.get_attn_cam().clamp(min=0)
+                avg_heads = (attn_heads.sum(dim=1) / attn_heads.shape[1]).detach()
+                attn_cams.append(avg_heads)
+            cam = compute_layer_rollout_attention(attn_cams, start_layer=start_layer)
+            cam = cam[:, 0, 1:]
+            return cam
+                
+        elif method == "print_layer_attribution"
+            cams = []
+            for blk in self.blocks:
+                grad = blk.attn.get_attn_gradients()
+                cam = blk.attn.get_attn_cam()
+                cam = cam[0].reshape(-1, cam.shape[-1], cam.shape[-1])
+                grad = grad[0].reshape(-1, grad.shape[-1], grad.shape[-1])
+                cam = grad * cam
+                cam = cam.clamp(min=0).mean(dim=0)
+                cams.append(cam.unsqueeze(0))
+            rollout = compute_layer_rollout_attention(cams, start_layer=start_layer)
+            # rollout = compute_layer_rollout_attention(cams, start_layer=start_layer)
+      
+            cam = rollout[:, 0, 1:]
+            return cam
+           ######################################################
         # our method, method name grad is legacy
         elif method == "transformer_attribution" or method == "grad":
             cams = []
