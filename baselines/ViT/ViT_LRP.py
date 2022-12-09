@@ -461,7 +461,11 @@ class VisionTransformer(nn.Module):
                 grad = grad[0].reshape(-1, grad.shape[-1], grad.shape[-1])
                 cam = grad * cam
                 cam = cam.clamp(min=0).mean(dim=0)
+                # TODO: regulization
+                cam = (cam - cam.min())/(cam.max() - cam.min())
                 cams.append(cam.unsqueeze(0))
+            # image_transformer_attribution = (image_transformer_attribution - image_transformer_attribution.min()) / (image_transformer_attribution.max() - image_transformer_attribution.min())
+            # vis = show_cam_on_image(image_transformer_attribution, transformer_attribution)
             rollout = compute_rollout_attention(cams, start_layer=start_layer)
             # rollout = compute_layer_rollout_attention(cams, start_layer=start_layer)
       
