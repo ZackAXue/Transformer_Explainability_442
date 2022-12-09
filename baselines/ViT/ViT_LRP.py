@@ -35,6 +35,8 @@ default_cfgs = {
         mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
 }
 
+
+# my edit:
 def compute_rollout_attention(all_layer_matrices, start_layer=0):
     # adding residual consideration
     num_tokens = all_layer_matrices[0].shape[1]
@@ -46,7 +48,8 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
     
     joint_attention = all_layer_matrices[start_layer]
     count = 0
-    for i in range(start_layer+1, len(all_layer_matrices)):
+    end = start_layer + 1
+    for i in range(1, end):
         count += 1
         joint_attention = all_layer_matrices[i].bmm(joint_attention)
         
@@ -58,6 +61,31 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
     print(joint_attention)
     print("===========================================")
     return joint_attention
+
+# beifen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# def compute_rollout_attention(all_layer_matrices, start_layer=0):
+#     # adding residual consideration
+#     num_tokens = all_layer_matrices[0].shape[1]
+#     batch_size = all_layer_matrices[0].shape[0]
+#     eye = torch.eye(num_tokens).expand(batch_size, num_tokens, num_tokens).to(all_layer_matrices[0].device)
+#     all_layer_matrices = [all_layer_matrices[i] + eye for i in range(len(all_layer_matrices))]
+#     # all_layer_matrices = [all_layer_matrices[i] / all_layer_matrices[i].sum(dim=-1, keepdim=True)
+#     #                       for i in range(len(all_layer_matrices))]
+    
+#     joint_attention = all_layer_matrices[start_layer]
+#     count = 0
+#     for i in range(start_layer+1, len(all_layer_matrices)):
+#         count += 1
+#         joint_attention = all_layer_matrices[i].bmm(joint_attention)
+        
+#     print("start layerr: ", start_layer)
+#     print("product times:",count)
+#     print("===========================================")
+#     print("joint_attention from compute_rollout_attention in Vit_LRP.py: ")
+#     print(joint_attention.shape)
+#     print(joint_attention)
+#     print("===========================================")
+#     return joint_attention
 ############################################################################
 # TODO
 def compute_layer_rollout_attention(all_layer_matrices, start_layer=0):
