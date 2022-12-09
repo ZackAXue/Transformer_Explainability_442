@@ -32,7 +32,7 @@ class ReshapeTransform:
         return result
 
 
-def main():
+def plot_grad_cam(img_path):
     model = vit_base_patch16_224()
     weights_path = "./vit_base_patch16_224.pth"
     model.load_state_dict(torch.load(weights_path, map_location="cpu"))
@@ -43,7 +43,8 @@ def main():
     data_transform = transforms.Compose([transforms.ToTensor(),
                                          transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])
     # load image
-    img_path = "both.png"
+    # img_path = "both.png"
+    # TODO
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path).convert('RGB')
     img = np.array(img, dtype=np.uint8)
@@ -69,7 +70,8 @@ def main():
     plt.show()
 
 
-if __name__ == '__main__':
-    main()
-
+############################################################
+def test():
+    print('print')
+############################################################
 
