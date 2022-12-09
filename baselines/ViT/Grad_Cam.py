@@ -64,7 +64,7 @@ def plot_grad_cam(img_path):
     target_category = 281  # tabby, tabby cat
     # target_category = 254  # pug, pug-dog
 
-    grayscale_cam = cam(input_tensor=input_tensor, target_category=target_category)
+    grayscale_cam = cam(input_tensor=input_tensor)
 
     grayscale_cam = grayscale_cam[0, :]
     visualization = show_cam_on_image(img / 255., grayscale_cam, use_rgb=True)
@@ -73,8 +73,7 @@ def plot_grad_cam(img_path):
 
 
 ############################################################
-def test():
+def grad_cam_test():
     print('1111111111')
 ############################################################
-
 
