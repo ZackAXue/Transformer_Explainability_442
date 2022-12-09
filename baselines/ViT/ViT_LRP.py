@@ -323,7 +323,7 @@ class VisionTransformer(nn.Module):
     
     ######################################################
     def get_relprop(self):
-        attn_cams_temp = []
+        attn_grad_temp = []
         attns_temp = []
         block_num = 0
 
@@ -331,9 +331,9 @@ class VisionTransformer(nn.Module):
             block_num += 1
             attn = blk.attn.get_attn()
             attns_temp.append(attn)
-            attn_heads = blk.attn.get_attn_cam()
-            attn_cams_temp.append(attn_heads)
-        return attns_temp, attn_cams_temp
+            attn_grad = blk.attn.get_attn_gradients()
+            attn_grad_temp.append(attn_grad)
+        return attns_temp, attn_grad_temp
 
     ######################################################
 
