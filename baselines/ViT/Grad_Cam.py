@@ -4,7 +4,9 @@ import torch
 from PIL import Image
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from utils import GradCAM, show_cam_on_image, center_crop_img
+# from utils import GradCAM, show_cam_on_image, center_crop_img
+from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam.utils.image import show_cam_on_image
 from ViT_LRP import vit_base_patch16_224
 # from vit_model import vit_base_patch16_224
 
@@ -48,7 +50,7 @@ def plot_grad_cam(img_path):
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path).convert('RGB')
     img = np.array(img, dtype=np.uint8)
-    img = center_crop_img(img, 224)
+    # img = center_crop_img(img, 224)
     # [C, H, W]
     img_tensor = data_transform(img)
     # expand batch dimension
@@ -71,7 +73,8 @@ def plot_grad_cam(img_path):
 
 
 ############################################################
-def grad_cam_test():
-    print('print')
+def test():
+    print('1111111111')
 ############################################################
+
 
