@@ -46,7 +46,7 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
     # all_layer_matrices = [all_layer_matrices[i] / all_layer_matrices[i].sum(dim=-1, keepdim=True)
     #                       for i in range(len(all_layer_matrices))]
     
-    joint_attention = all_layer_matrices[start_layer]
+    joint_attention = all_layer_matrices[0]
     count = 0
     end = start_layer + 1
     for i in range(1, end):
