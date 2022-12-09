@@ -407,7 +407,7 @@ class VisionTransformer(nn.Module):
             cam = cam[:, 0, 1:]
             return cam
                 
-        elif method == "print_layer_attribution"
+        elif method == "print_layer_attribution":
             cams = []
             for blk in self.blocks:
                 grad = blk.attn.get_attn_gradients()
