@@ -78,13 +78,13 @@ def compute_rollout_attention(all_layer_matrices, start_layer=0):
         count += 1
         joint_attention = all_layer_matrices[i].bmm(joint_attention)
         
-    print("start layerr: ", start_layer)
-    print("product times:",count)
-    print("===========================================")
-    print("joint_attention from compute_rollout_attention in Vit_LRP.py: ")
-    print(joint_attention.shape)
-    print(joint_attention)
-    print("===========================================")
+#     print("start layerr: ", start_layer)
+#     print("product times:",count)
+#     print("===========================================")
+#     print("joint_attention from compute_rollout_attention in Vit_LRP.py: ")
+#     print(joint_attention.shape)
+#     print(joint_attention)
+#     print("===========================================")
     return joint_attention
 ############################################################################
 # TODO
@@ -392,9 +392,9 @@ class VisionTransformer(nn.Module):
     def relprop(self, cam=None,method="transformer_attribution", is_ablation=False, start_layer=0, **kwargs):
         # print(kwargs)
         # print("conservation 1", cam.sum())
-        print("=================calling relprop from VisionTransformer============================")
-        print("method", method)
-        print("=================calling relprop from VisionTransformer============================")
+#         print("=================calling relprop from VisionTransformer============================")
+#         print("method", method)
+#         print("=================calling relprop from VisionTransformer============================")
         cam = self.head.relprop(cam, **kwargs)
         cam = cam.unsqueeze(1)
         cam = self.pool.relprop(cam, **kwargs)
